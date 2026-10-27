@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- ===============================================--><!--    Document Title--><!-- ===============================================-->
+    <title>Dashboard</title>
+
+    <!-- ===============================================--><!--    Favicons--><!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="dashboard_dashboard_assets/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="dashboard_assets/assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="dashboard_assets/assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="dashboard_assets/assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="dashboard_assets/assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="dashboard_assets/assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+    <script src="dashboard_assets/assets/js/config.js"></script>
+    <script src="dashboard_assets/assets/js/simplebar.min.js"></script>
+
+    <!-- ===============================================--><!--    Stylesheets--><!-- ===============================================-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
+    <link href="dashboard_assets/assets/css/simplebar.min.css" rel="stylesheet">
+    <link href="dashboard_assets/assets/css/theme-rtl.min.css" rel="stylesheet" id="style-rtl">
+    <link href="dashboard_assets/assets/css/theme.min.css" rel="stylesheet" id="style-default">
+    <script>
+      var isRTL = JSON.parse(localStorage.getItem('isRTL'));
+      if (isRTL) {
+        var linkDefault = document.getElementById('style-default');
+        var userLinkDefault = document.getElementById('user-style-default');
+        //linkDefault.setAttribute('disabled', true);
+        //userLinkDefault.setAttribute('disabled', true);
+        document.querySelector('html').setAttribute('dir', 'rtl');
+      } else {
+        var linkRTL = document.getElementById('style-rtl');
+        var userLinkRTL = document.getElementById('user-style-rtl');
+        //linkRTL.setAttribute('disabled', true);
+        //userLinkRTL.setAttribute('disabled', true);
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- ===============================================--><!--    Main Content--><!-- ===============================================-->
+    <main class="main" id="top">
+      <div class="container" data-layout="container">
+        
+        
+        
+        <div class="content pt-5">         
+          <div class="row g-3 mb-3">
+            <div class="col-md-6 col-xxl-3">
+              <div class="card h-md-100 ecommerce-card-min-width">
+                <div class="card-header pb-0">
+                  <h6 class="mb-0 mt-2 d-flex align-items-center">Monthly Invoices Graph<span class="ms-1 text-400" data-bs-toggle="tooltip" data-bs-placement="top" title="Calculated according to last week's sales"><span class="far fa-question-circle" data-fa-transform="shrink-1"></span></span></h6>
+                </div>
+                <div class="card-body d-flex flex-column justify-content-end">
+                  <div class="row">
+                    <div class="col">
+                      <p class="font-sans-serif lh-1 mb-1 fs-5">$47K</p><span class="badge badge-subtle-success rounded-pill fs-11">+3.5%</span>
+                    </div>
+                    <div class="col-auto ps-0">
+                      <div class="echart-bar-weekly-sales h-100"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xxl-3">
+              <div class="card h-md-100">
+                <div class="card-header pb-0">
+                  <h6 class="mb-0 mt-2">Open Invoices Graph</h6>
+                </div>
+                <div class="card-body d-flex flex-column justify-content-end">
+                  <div class="row justify-content-between">
+                    <div class="col-auto align-self-end">
+                      <div class="fs-5 fw-normal font-sans-serif text-700 lh-1 mb-1">58.4K</div><span class="badge rounded-pill fs-11 bg-200 text-primary"><span class="fas fa-caret-up me-1"></span>13.6%</span>
+                    </div>
+                    <div class="col-auto ps-0 mt-n4">
+                      <div class="echart-default-total-order" data-echarts='{"tooltip":{"trigger":"axis","formatter":"{b0} : {c0}"},"xAxis":{"data":["Week 4","Week 5","Week 6","Week 7"]},"series":[{"type":"line","data":[20,40,100,120],"smooth":true,"lineStyle":{"width":3}}],"grid":{"bottom":"2%","top":"2%","right":"10px","left":"10px"}}' data-echart-responsive="true"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xxl-3">
+              <div class="card h-md-100">
+                <div class="card-body">
+                  <div class="row h-100 justify-content-between g-0">
+                    <div class="col-5 col-sm-6 col-xxl pe-2">
+                      <h6 class="mt-1">Open Orders Graph</h6>
+                      <div class="fs-11 mt-3">
+                        <div class="d-flex flex-between-center mb-1">
+                          <div class="d-flex align-items-center"><span class="dot bg-primary"></span><span class="fw-semi-bold">Samsung</span></div>
+                          <div class="d-xxl-none">33%</div>
+                        </div>
+                        <div class="d-flex flex-between-center mb-1">
+                          <div class="d-flex align-items-center"><span class="dot bg-info"></span><span class="fw-semi-bold">Huawei</span></div>
+                          <div class="d-xxl-none">29%</div>
+                        </div>
+                        <div class="d-flex flex-between-center mb-1">
+                          <div class="d-flex align-items-center"><span class="dot bg-300"></span><span class="fw-semi-bold">Apple</span></div>
+                          <div class="d-xxl-none">20%</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto position-relative">
+                      <div class="echart-market-share"></div>
+                      <div class="position-absolute top-50 start-50 translate-middle text-1100 fs-7">26M</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xxl-3">
+              <div class="card">
+                        <div class="card-header pb-0">
+                          <h6 class="mb-0 mt-2 d-flex align-items-center">Statements</h6>
+                        </div>
+                        <div class="card-body">
+                          <div class="row align-items-end">
+                            <div class="col">
+                              <p class="font-sans-serif lh-1 mb-1 fs-7">58.4K</p>
+                              <div class="badge badge-subtle-primary rounded-pill fs-11"><span class="fas fa-caret-up me-1"></span>13.6%</div>
+                            </div>
+                            <div class="col-auto ps-0">
+                              <div class="total-order-ecommerce" data-echarts='{"series":[{"type":"line","data":[110,100,250,210,530,480,320,325]}],"grid":{"bottom":"-10px"}}'></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+            </div>
+          </div>
+          <div class="row g-0">
+            <div class="col-lg-12 mb-3">
+              <div class="card h-lg-100">
+                <div class="card-header">
+                  <div class="row flex-between-center">
+                    <div class="col-auto">
+                      <h6 class="mb-0">Total Sales</h6>
+                    </div>
+                    <div class="col-auto d-flex"><select class="form-select form-select-sm select-month me-2">
+                        <option value="0">January</option>
+                        <option value="1">February</option>
+                        <option value="2">March</option>
+                        <option value="3">April</option>
+                        <option value="4">May</option>
+                        <option value="5">Jun</option>
+                        <option value="6">July</option>
+                        <option value="7">August</option>
+                        <option value="8">September</option>
+                        <option value="9">October</option>
+                        <option value="10">November</option>
+                        <option value="11">December</option>
+                      </select>
+                      <div class="dropdown font-sans-serif btn-reveal-trigger"><button class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal" type="button" id="dropdown-total-sales" data-bs-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h fs-11"></span></button>
+                        <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="dropdown-total-sales"><a class="dropdown-item" href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
+                          <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Remove</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body h-100 pe-0"><!-- Find the JS file for the following chart at: src\js\charts\echarts\total-sales.js--><!-- If you are not using gulp based workflow, you can find the transpiled code at: public\assets\js\theme.js-->
+                  <div class="echart-line-total-sales h-100" data-echart-responsive="true"></div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </main>
+
+    <script src="dashboard_assets/assets/js/popper.min.js"></script>
+    <script src="dashboard_assets/assets/js/bootstrap.min.js"></script>
+    <script src="dashboard_assets/assets/js/anchor.min.js"></script>
+    <script src="dashboard_assets/assets/js/is.min.js"></script>
+    <script src="dashboard_assets/assets/js/echarts.min.js"></script>
+    <script src="dashboard_assets/assets/js/all.min.js"></script>
+    <script src="dashboard_assets/assets/js/lodash.min.js"></script>
+    <script src="dashboard_assets/assets/js/list.min.js"></script>
+    <script src="dashboard_assets/assets/js/theme.js"></script>
+
+    <script>
+          var isFluid = JSON.parse(localStorage.getItem('isFluid'));
+          if (isFluid) {
+            var container = document.querySelector('[data-layout]');
+            container.classList.remove('container');
+            container.classList.add('container-fluid');
+          }
+        </script>
+
+        <!--<script>
+            var navbarPosition = localStorage.getItem('navbarPosition');
+            var navbarVertical = document.querySelector('.navbar-vertical');
+            var navbarTopVertical = document.querySelector('.content .navbar-top');
+            var navbarTop = document.querySelector('[data-layout] .navbar-top:not([data-double-top-nav');
+            var navbarDoubleTop = document.querySelector('[data-double-top-nav]');
+            var navbarTopCombo = document.querySelector('.content [data-navbar-top="combo"]');
+
+            if (localStorage.getItem('navbarPosition') === 'double-top') {
+              document.documentElement.classList.toggle('double-top-nav-layout');
+            }
+
+            if (navbarPosition === 'top') {
+              navbarTop.removeAttribute('style');
+              navbarTopVertical.remove(navbarTopVertical);
+              navbarVertical.remove(navbarVertical);
+              navbarTopCombo.remove(navbarTopCombo);
+              navbarDoubleTop.remove(navbarDoubleTop);
+            } else if (navbarPosition === 'combo') {
+              navbarVertical.removeAttribute('style');
+              navbarTopCombo.removeAttribute('style');
+              navbarTop.remove(navbarTop);
+              navbarTopVertical.remove(navbarTopVertical);
+              navbarDoubleTop.remove(navbarDoubleTop);
+            } else if (navbarPosition === 'double-top') {
+              navbarDoubleTop.removeAttribute('style');
+              navbarTopVertical.remove(navbarTopVertical);
+              navbarVertical.remove(navbarVertical);
+              navbarTop.remove(navbarTop);
+              navbarTopCombo.remove(navbarTopCombo);
+            } else {
+              navbarVertical.removeAttribute('style');
+              navbarTopVertical.removeAttribute('style');
+              navbarTop.remove(navbarTop);
+              navbarDoubleTop.remove(navbarDoubleTop);
+              navbarTopCombo.remove(navbarTopCombo);
+            }
+          </script> -->
+  </body>
+
+</html>

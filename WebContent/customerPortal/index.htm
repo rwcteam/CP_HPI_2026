@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Sign In</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="NewPortalAssets/assets/css/profile_style.css" rel="stylesheet">
+
+   	<script>
+
+		$(document).ready(function() {
+			setFoc();
+  		});
+
+ 		$('#loginUserID').keypress(function(event){
+	  		if(event.keyCode == 13){
+	    		$('#image1').click();
+	  		}
+		});
+
+
+		function newWindow(file,window){
+			msgWindow=open(file,window,'resizable=no, scrollbars=yes, width=440,height=270');
+			if(msgWindow.opener==null) 
+				msgWindow.opener = self;
+		}
+
+		function chageCompanyId(){
+			if(!MandatoryInput("Company Id", document.Login.companyId))
+				return false
+			document.Login.Submit.value="ChangeCompany";
+			document.Login.submit();
+		}
+
+		function chagePassword(){
+			if(!MandatoryInput("Password", document.Login.password))
+				return false
+			document.Login.Submit.value="GetCompanies";
+			document.Login.submit();
+		}
+
+		function checkValue(){
+			if(!MandatoryInput("User Id", document.Login.userId)){
+				document.applets.msg.repaint();
+				return false
+			}
+			else if(!MandatoryInput("Password", document.Login.password)){
+				document.applets.msg.repaint();
+				return false
+			}
+			else if(!MandatoryInput("Company Id", document.Login.companyId)){
+				document.applets.msg.repaint();
+				return false
+			}
+			else if(document.Login.warehouse.value=="" || document.Login.warehouse.value==" "){
+				document.applets.msg.repaint();
+				return false
+			}
+			else
+				return true;
+		}
+
+		function onEnter(){
+			if(event.keyCode==13){		
+				if(checkValue())
+					submitPage();
+			}
+		}
+
+
+		function submitPage(){
+			document.Login.Submit.value="Sign In";
+			if(checkValue())
+				document.Login.submit();
+		}
+
+		function menusGo(){
+		}
+
+		function showMessage1(message){
+			//var show=document.applets.msg;
+			if(trim(message)!=""){
+				//document.all.Page.style.pixelTop=40;
+				document.all.emessage.innerText='';
+				document.all.emessage.innerHTML='<table width=100%><tr height="30"><td class="errorMessage">'+message+'</td></tr></table>';
+				document.all.emessage.style.visibility="visible";
+				//show.setMessage(message);
+			}
+		}
+
+		
+		function setFoc(){
+			if(document.forms[0].companyId.value=="")
+				document.forms[0].userId.focus();  //setFocus();
+			else
+				document.forms[0].image1.focus();
+		}
+
+		function showmsg(){
+			setTimeout("showMessage1('<!--message-->')", 500)
+		}
+
+		
+	</script>
+    
+    
+  </head>
+  <body>
+
+    <div class="wrapper">
+    <section class="login-content">
+         <div class="container h-100">
+            <div class="row align-items-center justify-content-center h-100">
+               <div class="col-lg-5 col-md-8">
+                  <div class="card p-3">
+                     <div class="card-body">
+                        <div class="auth-logo text-center">
+                           <img src="NewPortalAssets/assets/images/logo.png" width="120" class="img-fluid rounded-normal light-logo" alt="logo">
+                        </div>
+                        <h2 class="mb-3 font-weight-bold text-center">Sign In</h2>
+                        <!-- <p class="text-center">To Keep connected with us please login with your personal info</p> -->
+                        <form name="Login" class="pt-3" action="../index.htm" method="post">
+                        <!-- <form class="pt-3" action="/customerPortal/index.htm" method="post"> -->
+                           <div class="row mt-2">
+                              <div class="col-lg-12">
+                                 <div class="form-group">
+                                    <label class="text-secondary">User Id</label>
+                                    <input class="form-control" type="text" name="userId" id="userId" placeholder="User Id" onBlur="capLostFocus(this)">
+                                 </div>
+                              </div>                              
+                           </div>
+                           <div class="row mt-2">
+                              <div class="col-lg-12">
+                                 <div class="form-group">
+                                    <label class="text-secondary">Password</label>
+                                    <input class="form-control" type="password" name="password" id="password" placeholder="Password" onChange="capLostFocus(this);chagePassword()">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row mt-2">
+                               <div class="col-lg-6">
+                                  <div class="form-group">
+                                   <div class="checkbox">
+                                      <label>
+                                        <input class="checkbox_type" name="check_box" type="checkbox">
+                                        <i class="helper"></i>Remember Me</label>
+                                    </div>
+                                  </div>
+                              </div>
+                               <div class="col-lg-6 m-auto text-center">
+                                    <a href="A_CP_ForgetPassword.jsp" class="float-end">Forget Password?</a>
+                               </div>                               
+                           </div>
+                           <div class="form-group">
+          						<input type="hidden" name="companyId" value="1">          
+          						<input type="hidden" name="warehouse" value="PHX">  
+          						
+	           					<input type="hidden" name="websiteId" value="distribution">
+          						<input type="hidden" name="actionCode" value="Login">
+          						<input type="hidden" name="tempPoNumber" >
+          						<input type="hidden" name="priceMask">          
+          						<input type="hidden" name="standardDateFormat">          
+          						<input type="hidden" name="allowNonStock">          
+          						<input type="hidden" name="deptId">   		  
+		  						<input type="hidden" name="Submit" value="Sign In">
+		  						<input type="hidden" name="deliveryValue" value="CustomerDeliveryPortal">						
+                           </div>							
+                           <div class="row mt-2">
+                               <div class="col-lg-12 text-center">
+                                    <button type="submit" onClick="submitPage()" class="btn btn-danger btn-block mt-2">Sign In</button>
+                               </div>                               
+                           </div>
+                           <div class="col-lg-12 mt-4">
+                                <p class="mb-0 text-center">Don't have an account? <a href="">Sign Up</a></p>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
