@@ -33,13 +33,13 @@
 	
 	HashMap<String, String> userDetailsMap = getUserDetails(customerId.trim());
 	String allowAuthorized = Utils.removeNull(userDetailsMap.get("allowAuthorized").toString());
-	Utils.log("allowAuthorized :: " + allowAuthorized);
+	Utils.log("allowAuthorized >>>> " + allowAuthorized);
 	String allowDiscountOnCCPayment = Utils.removeNull(userDetailsMap.get("allowDiscountOnCCPayment").toString());
-	Utils.log("allowDiscountOnCCPayment :: " + allowDiscountOnCCPayment);
+	Utils.log("allowDiscountOnCCPayment >>>> " + allowDiscountOnCCPayment);
 	String ccSurchargeFeesPercent = Utils.removeNull(userDetailsMap.get("ccSurchargeFeesPercent").toString());
-	Utils.log("ccSurchargeFeesPercent :: " + ccSurchargeFeesPercent);
+	Utils.log("ccSurchargeFeesPercent >>>> " + ccSurchargeFeesPercent);
 	String allowDiscountAchPay = Utils.removeNull(userDetailsMap.get("allowDiscountAchPay").toString());
-	Utils.log("allowDiscountAchPay :: " + allowDiscountAchPay);
+	Utils.log("allowDiscountAchPay >>>> " + allowDiscountAchPay);
 
 	final DecimalFormat df = new DecimalFormat("#,###,###,##0.00");
 	String paymentMethod = request.getParameter("paymentMethod");
@@ -88,12 +88,11 @@
 
 		JSONObject requestObject=new JSONObject();
 		requestObject.put("request",customerACHBankListJSON);
-		Utils.log("ACH Bank List Request Object :: " + requestObject);
+		Utils.log("ACH Bank List Request Object >>>> " + requestObject);
 		
 		ApiCall apiCallObj = new ApiCall();
 		JSONObject loginRespObj = apiCallObj.getContextId(mainBody,loginUrl);
 		if(loginRespObj != null){
-			Utils.log("Login Response >>>> "+loginRespObj);
 			JSONObject loginResp = (JSONObject)loginRespObj.get("response");
 			String contextId = loginResp.get("SessionContextId").toString();
 			Utils.log("Context Id >>>> "+contextId);
@@ -101,10 +100,10 @@
 			Utils.log("System Id >>>> "+systemId);
 		
 			String bankListUrl = url+"AccountsReceivable/CustomerACHBankList";
-			Utils.log("bankListUrl :: " + bankListUrl);
+			Utils.log("bankListUrl >>>> " + bankListUrl);
 	    	JSONObject responseObj = apiCallObj.agilityPublicAPICall(requestObject,bankListUrl,contextId,systemId);
 			if(responseObj != null){
-		    	Utils.log("ACH Bank List Response :: "+responseObj);
+		    	Utils.log("ACH Bank List Response >>>> "+responseObj);
 		    	JSONObject res = (JSONObject)responseObj.get("response");
 		    	if(Integer.parseInt(res.get("ReturnCode").toString()) == 0){
 		    		JSONObject customerACHBankListJSONResponse = (JSONObject)res.get("CustomerACHBankListJSONResponse");
@@ -146,12 +145,11 @@
 		JSONObject requestObject=new JSONObject();
 		requestObject.put("request",CustomerJSON);
 		
-		Utils.log("CC Bank List Request Object :: " + requestObject);
+		Utils.log("CC Bank List Request Object >>>> " + requestObject);
 		
 		ApiCall apiCallObj = new ApiCall();
 		JSONObject loginRespObj = apiCallObj.getContextId(mainBody,loginUrl);
 		if(loginRespObj != null){
-			Utils.log("Login Response >>>> "+loginRespObj);
 			JSONObject loginResp = (JSONObject)loginRespObj.get("response");
 			String contextId = loginResp.get("SessionContextId").toString();
 			Utils.log("Context Id >>>> "+contextId);
@@ -159,10 +157,10 @@
 			Utils.log("System Id >>>> "+systemId);
 		
 			String creditCardUrl = url+"AccountsReceivable/SavedCreditCardList";
-			Utils.log("creditCardUrl :: " + creditCardUrl);
+			Utils.log("creditCardUrl >>>> " + creditCardUrl);
 		
 	    	JSONObject responseObj = apiCallObj.agilityPublicAPICall(requestObject,creditCardUrl,contextId,systemId);
-	    	Utils.log("CC Bank List Response :: " + responseObj);
+	    	Utils.log("CC Bank List Response >>>> " + responseObj);
 	    	JSONObject res = (JSONObject)responseObj.get("response");
 	    	if(Integer.parseInt(res.get("ReturnCode").toString()) == 0){
 	    		JSONObject savedCreditCardListJSONResponse = (JSONObject)res.get("SavedCreditCardListJSONResponse");
@@ -1394,7 +1392,6 @@
 			ApiCall apiCallObj = new ApiCall();
 			JSONObject loginRespObj = apiCallObj.getContextId(mainBody,loginUrl);
 			if(loginRespObj != null){
-				Utils.log("Login Response >>>> "+loginRespObj);
 				JSONObject loginResp = (JSONObject)loginRespObj.get("response");
 				String contextId = loginResp.get("SessionContextId").toString();
 				Utils.log("Context Id >>>> "+contextId);
@@ -1409,7 +1406,7 @@
 				Utils.log("Invoice List Request Object >>>> " + requestObject);
 				
 				String invoicesListUrl = url+"AccountsReceivable/BalancesList";
-				Utils.log("Invoices List Url :: " + invoicesListUrl);
+				Utils.log("Invoices List Url >>>> " + invoicesListUrl);
 		    	JSONObject responseObj = apiCallObj.agilityPublicAPICall(requestObject,invoicesListUrl,contextId,systemId);
 		    	if(responseObj != null){
 			    	JSONObject res = (JSONObject)responseObj.get("response");

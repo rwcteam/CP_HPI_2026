@@ -45,16 +45,16 @@
 	String userId = (String)session.getAttribute("userId");
 	
 	String customerId = (String)session.getAttribute("customerId");
-	Utils.log("customerId :: " + customerId);
+	Utils.log("customerId >>>> " + customerId);
 	
 	HashMap<String, String> userDetailsMap = getUserDetails(customerId.trim());
 	String customerFirstName=Utils.removeNull(userDetailsMap.get("firstName").toString());
 	String customerLastName=Utils.removeNull(userDetailsMap.get("lastName").toString());
 	String customerEmailId=Utils.removeNull(userDetailsMap.get("emailId").toString());
 	String allowDiscountOnCCPayment = Utils.removeNull(userDetailsMap.get("allowDiscountOnCCPayment").toString());
-	Utils.log("allowDiscountOnCCPayment :: " + allowDiscountOnCCPayment);
+	Utils.log("allowDiscountOnCCPayment >>>> " + allowDiscountOnCCPayment);
 	String allowDiscountAchPay = Utils.removeNull(userDetailsMap.get("allowDiscountAchPay").toString());
-	Utils.log("allowDiscountAchPay :: " + allowDiscountAchPay);
+	Utils.log("allowDiscountAchPay >>>> " + allowDiscountAchPay);
 	
 	final DecimalFormat df = new DecimalFormat("#,###,###,##0.00");
 	FileReader reader=new FileReader("eTechLogix.properties");  
@@ -101,12 +101,9 @@
 				JSONObject requestObject=new JSONObject();
 				requestObject.put("request",customerACHBankListJSON);
 				
-				Utils.log("ACH Bank List Request Object :: " + requestObject);
-				
-				Utils.log("Login Request Object :: " + mainBody);
+				Utils.log("ACH Bank List Request Object >>>> " + requestObject);
 				JSONObject loginRespObj = getContextId(loginUrl,mainBody);
 				if(loginRespObj != null){
-					Utils.log("Login Response >>>> "+loginRespObj);
 					JSONObject loginResp = (JSONObject)loginRespObj.get("response");
 					String contextId = loginResp.get("SessionContextId").toString();
 					Utils.log("Context Id >>>> "+contextId);
@@ -116,7 +113,7 @@
 					String bankListUrl = url+"AccountsReceivable/CustomerACHBankList";
 		        	JSONObject responseObj = agilityPublicAccountsReceivableService(bankListUrl,requestObject,contextId,systemId);
 		        	if(responseObj != null){
-			        	Utils.log("ACH Bank List Response :: "+responseObj);
+			        	Utils.log("ACH Bank List Response >>>> "+responseObj);
 			        	JSONObject res = (JSONObject)responseObj.get("response");
 			        	if(Integer.parseInt(res.get("ReturnCode").toString()) == 0){
 			        		JSONObject customerACHBankListJSONResponse = (JSONObject)res.get("CustomerACHBankListJSONResponse");
@@ -157,12 +154,9 @@
 				JSONObject requestObject=new JSONObject();
 				requestObject.put("request",CustomerJSON);
 				
-				Utils.log("CC Bank List Request Object :: " + requestObject);
-				
-				Utils.log("Login Request Object :: " + mainBody);
+				Utils.log("CC Bank List Request Object >>>> " + requestObject);
 				JSONObject loginRespObj = getContextId(loginUrl,mainBody);
 				if(loginRespObj != null){
-					Utils.log("Login Response >>>> "+loginRespObj);
 					JSONObject loginResp = (JSONObject)loginRespObj.get("response");
 					String contextId = loginResp.get("SessionContextId").toString();
 					Utils.log("Context Id >>>> "+contextId);
@@ -172,7 +166,7 @@
 					String creditCardUrl = url+"AccountsReceivable/SavedCreditCardList";
 		        	JSONObject responseObj = agilityPublicAccountsReceivableService(creditCardUrl,requestObject,contextId,systemId);
 		        	if(responseObj != null){
-			        	Utils.log("CC Bank List Response :: "+responseObj);
+			        	Utils.log("CC Bank List Response >>>> "+responseObj);
 			        	JSONObject res = (JSONObject)responseObj.get("response");
 			        	if(Integer.parseInt(res.get("ReturnCode").toString()) == 0){
 			        		JSONObject savedCreditCardListJSONResponse = (JSONObject)res.get("SavedCreditCardListJSONResponse");
@@ -243,10 +237,10 @@
 
 				JSONObject requestObject=new JSONObject();
 				requestObject.put("request",cashReceiptsPaymentJSON);
-				Utils.log("ACH Request Object :: " + requestObject);
+				Utils.log("ACH Request Object >>>> " + requestObject);
 
 				double totalInvoiceOpenAmount=0;
-				Utils.log("openAmountArrayData.length :: " + openAmountArrayData.length);
+				Utils.log("openAmountArrayData.length >>>> " + openAmountArrayData.length);
 				for(int i=0; i<openAmountArrayData.length; i++){
 					double dd=Double.parseDouble(openAmountArrayData[i])-Double.parseDouble(disAmountArrayData[i]);
 					totalInvoiceOpenAmount = totalInvoiceOpenAmount + dd;
@@ -254,14 +248,12 @@
 				
 				String formattetotalInvoiceOpenAmount = String.format("%.2f", totalInvoiceOpenAmount);
 				
-				Utils.log("TotalPaymentAmount :: " + totalPaymentAmount);
-				Utils.log("TotalInvoiceOpenAmount :: " + formattetotalInvoiceOpenAmount);
+				Utils.log("TotalPaymentAmount >>>> " + totalPaymentAmount);
+				Utils.log("TotalInvoiceOpenAmount >>>> " + formattetotalInvoiceOpenAmount);
 				
 				if(Double.parseDouble(totalPaymentAmount) == Double.parseDouble(formattetotalInvoiceOpenAmount)){
-					Utils.log("Login Request Object :: " + mainBody);
 					JSONObject loginRespObj = getContextId(loginUrl,mainBody);
 					if(loginRespObj != null){
-						Utils.log("Login Response >>>> "+loginRespObj);
 						JSONObject loginResp = (JSONObject)loginRespObj.get("response");
 						String contextId = loginResp.get("SessionContextId").toString();
 						Utils.log("Context Id >>>> "+contextId);
@@ -270,7 +262,7 @@
 						
 						String cashReceiptsACHPaymentUrl = url+"AccountsReceivable/CashReceiptsACHPayment";
 			        	JSONObject responseObj = agilityPublicAccountsReceivableService(cashReceiptsACHPaymentUrl,requestObject,contextId,systemId);
-			        	Utils.log("ACH Response :"+responseObj);
+			        	Utils.log("ACH Response >>>> "+responseObj);
 			        	JSONObject res = (JSONObject)responseObj.get("response");
 			        	if(Integer.parseInt(res.get("ReturnCode").toString()) == 0){
 			        		JSONObject cashReceiptsPaymentJSONResponse = (JSONObject)res.get("CashReceiptsPaymentJSONResponse");
@@ -463,15 +455,12 @@
 				
 				String formattetotalInvoiceOpenAmount = String.format("%.2f", totalInvoiceOpenAmount);
 				
-				Utils.log("TotalPaymentAmount :: " + totalPaymentAmount);
-				Utils.log("TotalInvoiceOpenAmount :: " + formattetotalInvoiceOpenAmount);
+				Utils.log("TotalPaymentAmount >>>> " + totalPaymentAmount);
+				Utils.log("TotalInvoiceOpenAmount >>>> " + formattetotalInvoiceOpenAmount);
 				
 				if(Double.parseDouble(totalPaymentAmount) == Double.parseDouble(formattetotalInvoiceOpenAmount)){
-					
-					Utils.log("Login Request Object :: " + mainBody);
 					JSONObject loginRespObj = getContextId(loginUrl,mainBody);
 					if(loginRespObj != null){
-						Utils.log("Login Response >>>> "+loginRespObj);
 						JSONObject loginResp = (JSONObject)loginRespObj.get("response");
 						String contextId = loginResp.get("SessionContextId").toString();
 						Utils.log("Context Id >>>> "+contextId);
@@ -480,7 +469,7 @@
 					
 						String cashReceiptsCCTokenPaymentUrl = url+"AccountsReceivable/CashReceiptsCCTokenPayment";
 						JSONObject responseObj = agilityPublicAccountsReceivableService(cashReceiptsCCTokenPaymentUrl,requestObject,contextId,systemId);
-			        	Utils.log("CC Response :"+responseObj);
+			        	Utils.log("CC Response >>>> "+responseObj);
 			        	JSONObject res = (JSONObject)responseObj.get("response");
 			        	if(Integer.parseInt(res.get("ReturnCode").toString()) == 0){
 			        		JSONObject cashReceiptsPaymentJSONResponse = (JSONObject)res.get("CashReceiptsPaymentJSONResponse");
@@ -730,7 +719,7 @@
 			JSONObject requestObject=new JSONObject();
 			requestObject.put("request",InvoicePaymentJSON);
 			
-			Utils.log("InvoicePayment Request Object :: " + requestObject);
+			Utils.log("InvoicePayment Request Object >>>> " + requestObject);
 
 			JSONObject respObj = agilityPublicAccountsReceivableService(invoicePaymentUrl,requestObject,contextId,systemId);
 	    	Utils.log("InvoicePayment Response : "+respObj);
@@ -778,7 +767,6 @@
 		headerMaps.put("ContextId", contextId);
 		headerMaps.put("Branch", systemId);
 		String contentType=MediaType.APPLICATION_JSON;
-		Utils.log("Request: "+requestObject);
 		return apiCall(url, requestObject.toString(), "POST", contentType, headerMaps);
 	}
 	
@@ -786,7 +774,6 @@
 	{
 		HashMap<String, String> headerMaps=new HashMap<String, String>();
 		String contentType=MediaType.APPLICATION_JSON;
-		Utils.log("Login Request: "+requestObject);
 		return apiCall(url, requestObject.toString(), "POST", contentType, headerMaps);
 	}
 
@@ -800,8 +787,8 @@
 		InputStreamReader isr = null;
 		BufferedReader in = null;
 		try {
-			Utils.log("URL : " + url);
-			Utils.log("Data : " + data);
+			//Utils.log("URL : " + url);
+			//Utils.log("Data : " + data);
 			
 			String protocall[]= url.split("://");
 			if("http".equalsIgnoreCase(protocall[0])) {
@@ -819,7 +806,7 @@
 					for (Map.Entry<String, String> entry : headerMaps.entrySet()) {
 						httpCon.setRequestProperty(entry.getKey(), entry.getValue());
 						
-						Utils.log(entry.getKey()+" : "+entry.getValue());
+						//Utils.log(entry.getKey()+" : "+entry.getValue());
 					}
 				}
 	
@@ -847,7 +834,7 @@
 					stringBuilder.append(inputLine);
 				}
 				
-				Utils.log("Log : "+stringBuilder);
+				//Utils.log("Log : "+stringBuilder);
 				
 				if(stringBuilder!=null && stringBuilder.length()>0) {
 					String output=stringBuilder.toString();
@@ -924,7 +911,7 @@
 					stringBuilder.append(inputLine);
 				}
 				
-				Utils.log("Log : "+stringBuilder);
+				//Utils.log("Log : "+stringBuilder);
 	
 				if(stringBuilder!=null && stringBuilder.length()>0){
 					String output=stringBuilder.toString();
