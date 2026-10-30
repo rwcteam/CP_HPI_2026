@@ -9,7 +9,8 @@
 <% 
 	DistUtils distUtils=new DistUtils();
 	//String userIdForUserNameHeader = (String)session.getAttribute("userId");
-	String customerPortalAdmin="",portalSo="",dashboard="",openOrder="",deliveryImages="",openInvoices="",pastInvoices="",statements="",payment="",userName="";
+	String customerPortalAdmin="",portalSo="",dashboard="",openOrder="",deliveryImages="",openInvoices="";
+	String pastInvoices="",statements="",payment="",userName="",supplierRewards="";
 	
 	HashMap<String, String> temp=getCustomerData((String)session.getAttribute("userId").toString().trim());
 	if(temp != null && temp.size()>0){
@@ -22,6 +23,7 @@
 		pastInvoices=temp.get("pastInvoices");
 		statements=temp.get("statements");
 		payment=temp.get("payment");
+		supplierRewards=temp.get("supplierRewards");
 	}
 	
 	userName = Utils.removeNull(distUtils.getFieldInfo("SELECT FIRSTNAME||' '||MIDDLENAME||' '||LASTNAME as USERNAME FROM ETECHUSER WHERE DEPTID='"+(String)session.getAttribute("customerId").toString().trim()+"'"));	
@@ -41,7 +43,6 @@
 <html>
 <head>
 	<meta name="referrer" content="strict-origin-when-cross-origin">
-
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RWC Building Products | Roofing Supply | Building Supplies | Roofers</title>   
@@ -250,7 +251,30 @@
 			                                    <i class="icon-orders"></i>Shop
 			                                    <span class="bot-line"></span>
 			                                </a>
+			                            </li><%}}
+			                            if(supplierRewards.trim().equalsIgnoreCase("Y")){
+				                            if(pageName.equalsIgnoreCase("SupplierRewards")){ %>
+			                            <li>
+			                                <a href="A_CP_SupplierRewards.jsp?pageName=SupplierRewards"  class="activeitem">
+			                                    <i class="icon-reward"></i>Supplier Rewards
+			                                    <span class="bot-line"></span>
+			                                </a>
+			                            </li><%}else{%><li>
+			                                <a href="A_CP_SupplierRewards.jsp?pageName=SupplierRewards"  >
+			                                    <i class="icon-reward"></i>Supplier Rewards
+			                                    <span class="bot-line"></span>
+			                                </a>
 			                            </li><%}}%>
+			                            
+			                            
+			                            <!-- <li>
+			                                <a href="https://www.rwc.org/vendor-price-increase-notices/" target="_blank" >
+											<i class="icon-vendor-price"></i>VPIN
+				                                <span class="bot-line"></span>
+			                                </a>
+			                            </li> -->
+										
+										
 								</ul>
 							</div>
 						</div>
@@ -312,7 +336,7 @@
 		try {
 			DistUtils du = new DistUtils();
 			String sqlQuery = "SELECT CUSTOMERPORTALADMIN,PORTAL_SO,DASHBOARD,OPEN_ORDER,DELIVERY_IMAGES,OPEN_INVOICES,PAST_INVOICES, "
-								+" STATEMENTS,PAYMENTS FROM ETECHUSER WHERE USERID='"+userId+"' ";
+								+" STATEMENTS,PAYMENTS,SUPPLIER_REWARDS FROM ETECHUSER WHERE USERID='"+userId+"' ";
 			Utils.log("ETECHUSER Query >>>> "+sqlQuery);
 			Hashtable ht=du.getDataFromQuery(sqlQuery);	
 			Vector customerPortalAdminVector = new Vector();
@@ -324,6 +348,7 @@
 			Vector pastInvoicesVector = new Vector();
 			Vector statementsVector = new Vector();
 			Vector paymentVector = new Vector();
+			Vector supplierRewardsVector = new Vector();
 			if (ht != null && ht.size() > 0) {
 				customerPortalAdminVector = (Vector) ht.get("CUSTOMERPORTALADMIN");
 				portalSoVector = (Vector) ht.get("PORTAL_SO");
@@ -334,6 +359,7 @@
 				pastInvoicesVector = (Vector) ht.get("PAST_INVOICES");
 				statementsVector = (Vector) ht.get("STATEMENTS");
 				paymentVector = (Vector) ht.get("PAYMENTS");
+				supplierRewardsVector = (Vector) ht.get("SUPPLIER_REWARDS");
 			}
 	        if (customerPortalAdminVector.size() > 0) {
 	            temp.put("customerPortalAdmin", Utils.removeNull(customerPortalAdminVector.get(0).toString()).trim());
@@ -345,6 +371,7 @@
 	            temp.put("pastInvoices", Utils.removeNull(pastInvoicesVector.get(0).toString()).trim());
 	            temp.put("statements", Utils.removeNull(statementsVector.get(0).toString()).trim());
 	            temp.put("payment", Utils.removeNull(paymentVector.get(0).toString()).trim());
+	            temp.put("supplierRewards", Utils.removeNull(supplierRewardsVector.get(0).toString()).trim());
 	        }
 		}
 		catch(Exception exception) {
